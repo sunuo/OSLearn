@@ -40,8 +40,7 @@ int fork1(void);  // Fork but exits on failure.
 struct cmd *parsecmd(char*);
 
 // Execute cmd.  Never returns.
-void
-runcmd(struct cmd *cmd)
+void runcmd(struct cmd *cmd)
 {
   int p[2], r;
   struct execcmd *ecmd;
@@ -81,8 +80,7 @@ runcmd(struct cmd *cmd)
   exit(0);
 }
 
-int
-getcmd(char *buf, int nbuf)
+int getcmd(char *buf, int nbuf)
 {
   
   if (isatty(fileno(stdin)))
@@ -94,8 +92,7 @@ getcmd(char *buf, int nbuf)
   return 0;
 }
 
-int
-main(void)
+int main(void)
 {
   static char buf[100];
   int fd, r;
@@ -111,14 +108,18 @@ main(void)
       continue;
     }
     if(fork1() == 0)
+    {
+//        fprintf(stdout,"child process\n");
       runcmd(parsecmd(buf));
+//        fprintf(stdout,"child process finish\n");
+    }
     wait(&r);
+//      fprintf(stdout,"father process finish\n");
   }
   exit(0);
 }
 
-int
-fork1(void)
+int fork1(void)
 {
   int pid;
   
@@ -128,8 +129,7 @@ fork1(void)
   return pid;
 }
 
-struct cmd*
-execcmd(void)
+struct cmd* execcmd(void)
 {
   struct execcmd *cmd;
 
@@ -139,8 +139,7 @@ execcmd(void)
   return (struct cmd*)cmd;
 }
 
-struct cmd*
-redircmd(struct cmd *subcmd, char *file, int type)
+struct cmd* redircmd(struct cmd *subcmd, char *file, int type)
 {
   struct redircmd *cmd;
 
@@ -154,8 +153,7 @@ redircmd(struct cmd *subcmd, char *file, int type)
   return (struct cmd*)cmd;
 }
 
-struct cmd*
-pipecmd(struct cmd *left, struct cmd *right)
+struct cmd* pipecmd(struct cmd *left, struct cmd *right)
 {
   struct pipecmd *cmd;
 
@@ -172,8 +170,7 @@ pipecmd(struct cmd *left, struct cmd *right)
 char whitespace[] = " \t\r\n\v";
 char symbols[] = "<|>";
 
-int
-gettoken(char **ps, char *es, char **q, char **eq)
+int gettoken(char **ps, char *es, char **q, char **eq)
 {
   char *s;
   int ret;
@@ -209,8 +206,7 @@ gettoken(char **ps, char *es, char **q, char **eq)
   return ret;
 }
 
-int
-peek(char **ps, char *es, char *toks)
+int peek(char **ps, char *es, char *toks)
 {
   char *s;
   
@@ -227,8 +223,7 @@ struct cmd *parseexec(char**, char*);
 
 // make a copy of the characters in the input buffer, starting from s through es.
 // null-terminate the copy to make it a string.
-char 
-*mkcopy(char *s, char *es)
+char *mkcopy(char *s, char *es)
 {
   int n = es - s;
   char *c = malloc(n+1);
@@ -238,8 +233,7 @@ char
   return c;
 }
 
-struct cmd*
-parsecmd(char *s)
+struct cmd* parsecmd(char *s)
 {
   char *es;
   struct cmd *cmd;
@@ -254,16 +248,14 @@ parsecmd(char *s)
   return cmd;
 }
 
-struct cmd*
-parseline(char **ps, char *es)
+struct cmd* parseline(char **ps, char *es)
 {
   struct cmd *cmd;
   cmd = parsepipe(ps, es);
   return cmd;
 }
 
-struct cmd*
-parsepipe(char **ps, char *es)
+struct cmd* parsepipe(char **ps, char *es)
 {
   struct cmd *cmd;
 
@@ -275,8 +267,7 @@ parsepipe(char **ps, char *es)
   return cmd;
 }
 
-struct cmd*
-parseredirs(struct cmd *cmd, char **ps, char *es)
+struct cmd* parseredirs(struct cmd *cmd, char **ps, char *es)
 {
   int tok;
   char *q, *eq;
@@ -299,8 +290,7 @@ parseredirs(struct cmd *cmd, char **ps, char *es)
   return cmd;
 }
 
-struct cmd*
-parseexec(char **ps, char *es)
+struct cmd* parseexec(char **ps, char *es)
 {
   char *q, *eq;
   int tok, argc;
