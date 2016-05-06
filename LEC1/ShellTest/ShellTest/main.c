@@ -29,6 +29,8 @@ int main(int argc, const char * argv[]) {
     args[2]="-l";
     args[3]=NULL;
     
+    printf("%s %s",args[0],args[3]);
+    
     execv(cmd, args);
     
     getchar();

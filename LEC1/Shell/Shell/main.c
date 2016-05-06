@@ -246,7 +246,7 @@ struct cmd* parsecmd(char *s)
     char *es;
     struct cmd *cmd;
     
-    es = s + strlen(s);
+    es = s + strlen(s);//这个地方指针指向s的结束标志\0，
     cmd = parseline(&s, es);
     peek(&s, es, "");
     if(s != es){
