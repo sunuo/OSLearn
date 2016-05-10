@@ -67,16 +67,16 @@ void runcmd(struct cmd *cmd)
             ecmd = (struct execcmd*)cmd;
             if(ecmd->argv[0] == 0)
                 exit(0);
-            fprintf(stderr, "exec not implemented %s  %s\n",ecmd->argv[0],strcat(path, ecmd->argv[0]));
+            char* command = strcat(path, ecmd->argv[0]);
+//            fprintf(stderr, "exec not implemented %s  %s:::%s %s %s %s %s %s %s %s %s\n",command,ecmd->argv[0],ecmd->argv[1],ecmd->argv[2],ecmd->argv[3],ecmd->argv[4],ecmd->argv[5],ecmd->argv[6],ecmd->argv[7],ecmd->argv[8],ecmd->argv[9]);
             // Your code here ...
-            execv(strcat(path, ecmd->argv[0]) ,ecmd->argv);
+            execv(command,ecmd->argv);
             break;
             
         case '>':
         case '<':
             rcmd = (struct redircmd*)cmd;
-            fprintf(stderr, "redir not implemented\n");
-            // Your code here ...
+//            fprintf(stderr, "redir not implemented\n");
             runcmd(rcmd->cmd);
             break;
             
@@ -325,6 +325,6 @@ struct cmd* parseexec(char **ps, char *es)
         }
         ret = parseredirs(ret, ps, es);
     }
-    cmd->argv[argc] = 0;
+    cmd->argv[argc] = NULL;//
     return ret;
 }

@@ -21,19 +21,64 @@ int main(int argc, const char * argv[]) {
     // insert code here...
 //    printf("Hello, World!\n");
     
-    char cmd[10]="/bin/ls";
+//    char cmd[10]="/bin/ls";
+//    
+//    char* args[10];
+//    args[0]="ls";
+//    args[1]="-a";
+//    args[2]="-l";
+//    args[3]=0;
+//    
+//    printf("%s %s",args[0],args[3]);
+//    
+//    execv(cmd, args);
+
+    FILE* fp=NULL;
     
-    char* args[10];
-    args[0]="ls";
-    args[1]="-a";
-    args[2]="-l";
-    args[3]=NULL;
+    fp=popen("ls -a -l", "r+");
     
-    printf("%s %s",args[0],args[3]);
     
-    execv(cmd, args);
+    
+    pclose(fp);
     
     getchar();
     
     return 0;
+}
+
+
+void logFile(const char* filePath)
+{
+    FILE* fp=fopen(filePath, "r");
+    
+    char buffer[10];
+    
+    
+    
+    while (!feof(fp)) {
+        memset(buffer, '\0', 10);
+        
+        char* result=NULL;
+        
+        result = fgets(buffer,10, fp);
+        
+        if(result!=NULL)
+        {
+            printf("read file:::%s",buffer);
+        }
+        else if(ferror(fp))
+        {
+            printf("read file error");
+        }
+        else
+        {
+            printf("unknow");
+        }
+            
+    }
+    
+    
+    
+    fclose(fp);
+    
 }
