@@ -32,18 +32,30 @@ int main(int argc, const char * argv[]) {
 //    printf("%s %s",args[0],args[3]);
 //    
 //    execv(cmd, args);
+//---------------------------------------------------------------
 
+    char buffer[1024];
+    memset(buffer,'\0',1024);
+    
     FILE* fp=NULL;
-    
     fp=popen("ls -a -l", "r+");
+
+    FILE* localFile=fopen("local", "w+");
     
-    
+    int size=sizeof(buffer);
+    fread(buffer, sizeof(char), size, fp);
+    printf("%s",buffer);
+    fputs(buffer, localFile);
     
     pclose(fp);
-    
-    getchar();
-    
-    return 0;
+    fclose(localFile);
+
+//---------------------------------------------------------------
+//    sprintf("ls -a -l", "")
+//    
+//    
+//    getchar();
+//    return 0;
 }
 
 

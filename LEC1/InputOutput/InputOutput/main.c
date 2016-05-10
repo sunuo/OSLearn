@@ -62,11 +62,6 @@ int main(int argc, const char * argv[]) {
     
     return 0;
 }
-//c语言动态参数
-void printVariables(int first,...)
-{
-//    va_list vlist=
-}
 
 //读取文件并输出
 void logFile(const char* filePath)
