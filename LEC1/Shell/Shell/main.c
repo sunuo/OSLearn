@@ -82,12 +82,55 @@ void runcmd(struct cmd *cmd)
             
         case '|':
             pcmd = (struct pipecmd*)cmd;
-            fprintf(stderr, "pipe not implemented\n");
-            // Your code here ...
+//            fprintf(stderr, "pipe not implemented\n");
+            printf("pipe test\n");
+            int p[2];
+            if (pipe(p)<0) {
+                printf("pipe error\n");
+            }
+            close(1);
+            dup(p[1]);
+            runcmd(pcmd->left);
+            close(0);
+            dup(0);
+            runcmd(pcmd->right);
             break;
     }
     exit(0);
 }
+
+
+
+void logExe(char* exe)
+{
+    char buffer[1024];
+    memset(buffer,'\0',1024);
+    
+    FILE* fp=NULL;
+    fp=popen(exe, "r+");
+//    FILE* localFile=fopen("local", "w+");
+    int size=sizeof(buffer);
+    
+    while (fread(buffer, sizeof(char), size, fp)) {
+        fputs(buffer, stdout);
+    }
+    if (feof(fp)) {
+        
+        //        printf("读取文件结束");
+    }
+    else if(ferror(fp))
+    {
+        printf("读取文件错误");
+    }
+    else
+    {
+        printf("读取文件 I DONT KNOW");
+    }
+    
+    pclose(fp);
+//    fclose(localFile);
+}
+
 
 int getcmd(char *buf, int nbuf)
 {
@@ -118,7 +161,8 @@ int main(void)
         if(fork1() == 0)
         {
             //        fprintf(stdout,"child process\n");
-            runcmd(parsecmd(buf));
+//            runcmd(parsecmd(buf));
+            logExe(buf);
             //        fprintf(stdout,"child process finish\n");
         }
         wait(&r);

@@ -34,28 +34,7 @@ int main(int argc, const char * argv[]) {
 //    execv(cmd, args);
 //---------------------------------------------------------------
 
-    char buffer[1024];
-    memset(buffer,'\0',1024);
-    
-    FILE* fp=NULL;
-    fp=popen("ls -a -l", "r+");
 
-    FILE* localFile=fopen("local", "w+");
-    
-    int size=sizeof(buffer);
-    fread(buffer, sizeof(char), size, fp);
-    printf("%s",buffer);
-    fputs(buffer, localFile);
-    
-    pclose(fp);
-    fclose(localFile);
-
-//---------------------------------------------------------------
-//    sprintf("ls -a -l", "")
-//    
-//    
-//    getchar();
-//    return 0;
 }
 
 
