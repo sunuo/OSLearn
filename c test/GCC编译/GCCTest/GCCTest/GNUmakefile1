@@ -1,0 +1,10 @@
+VPATH=assistant
+INC = -I assistant
+EXE:main.o help.o
+	gcc main.o help.o -o EXE
+help.o:HelpOne.c
+	gcc -c $< -o $@
+main.o:main.c
+	gcc -c $< $(INC) -o $@
+clean:
+	rm main.o help.o EXE
