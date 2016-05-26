@@ -1,0 +1,9 @@
+LIST = one two three
+var = 2
+all:
+	@for i in $(LIST); do\
+		echo $$i;\
+	done
+	@echo $(var)
+	@vvv=wrt;\
+	echo $$vvv

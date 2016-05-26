@@ -2,11 +2,13 @@ VPATH=assistant
 INC = -I assistant
 ALLOBJ=*.o
 
-EXE:main.o HelpOne.o
-	gcc $^ -o EXE
-
+EXE:$(ALLOBJ)
+	gcc $(ALLOBJ) -o EXE
+	
+main.o:main.c
+	gcc -c $< $(INC) -o $@
 %.o:%.c
-	gcc -c $(INC) $< -o $@
+	gcc -c $< -o $@
 
 .phony:clean
 clean:

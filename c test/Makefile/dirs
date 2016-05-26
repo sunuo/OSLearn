@@ -1,0 +1,6 @@
+cdir:=$(shell pwd)
+ALL:
+	dd=3
+	echo $(dd)
+	cdir=ddd
+	echo $(cdir)

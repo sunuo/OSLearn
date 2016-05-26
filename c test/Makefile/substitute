@@ -1,0 +1,10 @@
+v1 = a ba ac c.a
+v2 = ${v1:a=f}
+all:
+	@for value in $(v1);do\
+		echo $$value;\
+	done 
+
+	@for value in $(v2);do\
+		echo $$value;\
+	done
