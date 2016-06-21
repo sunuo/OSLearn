@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		77414A201CF30AA2006C16DD /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 77414A1F1CF30AA2006C16DD /* main.c */; };
 		77414A291CF30AEA006C16DD /* HelpOne.c in Sources */ = {isa = PBXBuildFile; fileRef = 77414A271CF30AEA006C16DD /* HelpOne.c */; };
+		77F814AB1CF802B700351C41 /* ASM.c in Sources */ = {isa = PBXBuildFile; fileRef = 77F814AA1CF802B700351C41 /* ASM.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,7 @@
 		77414A1F1CF30AA2006C16DD /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		77414A271CF30AEA006C16DD /* HelpOne.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = HelpOne.c; sourceTree = "<group>"; };
 		77414A281CF30AEA006C16DD /* HelpOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpOne.h; sourceTree = "<group>"; };
+		77F814AA1CF802B700351C41 /* ASM.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ASM.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				77414A261CF30AD2006C16DD /* assistant */,
 				77414A1F1CF30AA2006C16DD /* main.c */,
+				77F814AA1CF802B700351C41 /* ASM.c */,
 			);
 			path = GCCTest;
 			sourceTree = "<group>";
@@ -131,6 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77F814AB1CF802B700351C41 /* ASM.c in Sources */,
 				77414A201CF30AA2006C16DD /* main.c in Sources */,
 				77414A291CF30AEA006C16DD /* HelpOne.c in Sources */,
 			);
@@ -253,6 +257,7 @@
 				77414A251CF30AA2006C16DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

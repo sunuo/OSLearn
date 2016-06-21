@@ -22,6 +22,8 @@ int main(int argc, const char * argv[]) {
     
     printf("%d  %d \n",pa,~(size-1));
     printf("%x  %x \n",pa,~(size-1));
+    printf("%x\n",0x00000c02>>8);
+    printf("%x\n",(unsigned char)(0x00000c02));
     
     return 0;
 }
